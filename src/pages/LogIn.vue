@@ -24,12 +24,14 @@
 <script>
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 
 export default {
   setup() {
     const username = ref('');
     const password = ref('');
     const router = useRouter();
+    const store = useStore();
 
     const submitForm = () => {
       // Perform login logic here
@@ -39,6 +41,7 @@ export default {
 
       // Simulating successful login
       if (username.value && password.value) {
+        store.commit('loggedIn', true);
         // Redirect to home page
         router.push('/');
       }

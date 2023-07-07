@@ -28,7 +28,8 @@ const store = createStore({
         reviews: []
       },
       // Add more movies here
-    ]
+    ],
+    loggedIn: false
   },
   mutations: {
     addReview(state, payload) {
@@ -37,7 +38,10 @@ const store = createStore({
       if (movie) {
         movie.reviews.push(review);
       }
-    }
+    },
+    setLoggedIn(state, loggedIn) {
+      state.loggedIn = loggedIn;
+    },
   },
   actions: {
     addReview({ commit }, payload) {
@@ -47,7 +51,10 @@ const store = createStore({
   getters: {
     getMovieById: (state) => (id) => {
       return state.movies.find((m) => m.id === id);
-    }
+    },
+    isLoggedIn: (state) => {
+      return state.loggedIn;
+    },
   }
 });
 
